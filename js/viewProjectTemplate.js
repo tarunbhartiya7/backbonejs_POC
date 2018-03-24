@@ -36,6 +36,17 @@ var VehicleView = Backbone.View.extend({
 
 var VehiclesView = Backbone.View.extend({
   tagName: 'ul',
+
+  initialize: function(){
+    this.collection.on('add', this.onVehicleAdded, this);
+  },
+
+  onVehicleAdded: function(vehicle){
+    var vehicleView = new VehicleView({ model: vehicle });
+    this.$el.append(vehicleView.render().$el);
+    console.log('Vehicle Added');
+  },
+  
   render: function(){
     this.collection.each(vehicle => {
       var vehicleView = new VehicleView({model: vehicle});
