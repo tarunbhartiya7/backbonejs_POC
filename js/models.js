@@ -26,9 +26,12 @@ var Animal = Backbone.Model.extend({
 });
 
 var Dog = Animal.extend({
+  defaults: {
+    id: '2'
+  },
   walk: function(){
     Animal.prototype.walk.apply(this);  // call the base class method, similar to super() in java
-    console.log('Dog Walking...');
+    console.log('Dog with id ' + this.get('id') + ' Walking...');
   }
 });
 
