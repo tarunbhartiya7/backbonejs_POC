@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+
+  <div id="container"></div>
   
   <script src="./js/lib/jquery-3.3.1.min.js"></script>
   <script src="./js/lib/underscore-min.js"></script>
@@ -16,6 +18,11 @@
   <!-- <script src="./js/models.js"></script> -->
   <!-- <script src="./js/modelsProject.js"></script> -->
   <!-- <script src="./js/collectionsProject.js"></script> -->
-  <script src="./js/viewsProject.js"></script>
+  <!-- <script src="./js/viewsProject.js"></script> -->
+  <script id="vehicleTemplate" type="text/html">
+    <%= registrationNumber %>, <%= brand %>
+    <button class="delete">Delete</button>
+  </script>
+  <script src="./js/viewProjectTemplate.js"></script>
 </body>
 </html>
