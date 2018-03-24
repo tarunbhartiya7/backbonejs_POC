@@ -1,5 +1,2 @@
 # backbonejs_POC
-A Backbonejs POC
-
-Testing
-Testing
+A Backbonejs Boilerplate code.
