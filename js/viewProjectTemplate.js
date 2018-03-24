@@ -52,8 +52,15 @@ var vehicles = new Vehicles([
   new Vehicle({ id: 3, registrationNumber: 'XUV456', color: 'Gray', brand: 'BMW' })
 ]);
 
-var vehiclesView = new VehiclesView({ el: '#container', collection: vehicles });
-vehiclesView.render();
+// var vehiclesView = new VehiclesView({ el: '#container', collection: vehicles });
+// vehiclesView.render();
+
+// or but renders differently in that preserves the tag of view collection
+var vehiclesView = new VehiclesView({ collection: vehicles });
+$('#container').html(vehiclesView.render().$el);
+
+
+
 
 
 
