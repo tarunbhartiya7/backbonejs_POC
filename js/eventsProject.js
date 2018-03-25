@@ -1,4 +1,6 @@
-var Vehicle = Backbone.Model.extend();
+var Vehicle = Backbone.Model.extend({
+  idAttribute: "registrationNumber"
+});
 var Vehicles = Backbone.Collection.extend({
   model: Vehicle
 });
@@ -8,9 +10,9 @@ var VehicleView = Backbone.View.extend({
 
   className: 'vehicle',
 
-  initialize: function(){
-    this.model.on('change', this.render, this);
-  },
+  // initialize: function(){
+  //   this.model.on('change', this.render, this);
+  // },
 
   events: {
     'click .delete': 'onDeleteVehicle'
@@ -37,16 +39,17 @@ var VehicleView = Backbone.View.extend({
 var VehiclesView = Backbone.View.extend({
   tagName: 'ul',
 
-  id: "venues",
+  id: "vehicles",
 
   initialize: function(){
-    this.collection.on('add', this.onVehicleAdded, this);
+    bus.on('newVehicle', this.onVehicleAdded, this);
   },
 
   onVehicleAdded: function(vehicle){
-    var vehicleView = new VehicleView({ model: vehicle });
+    var car = new Vehicle({ registrationNumber: vehicle, color: 'Blue' });
+    var vehicleView = new VehicleView({ model: car });
     this.$el.append(vehicleView.render().$el);
-    console.log('Vehicle Added');
+    alert('Vehicle Added');
   },
   
   render: function(){
@@ -59,14 +62,43 @@ var VehiclesView = Backbone.View.extend({
   }
 });
 
+var NewVehicleView = Backbone.View.extend({
+  events: {
+		"click .add": "onAdd"
+  },
+
+  className: 'newVehicle',
+  
+  onAdd: function(){
+		var input = this.$el.find(".registration-number");
+
+		var registrationNumber = input.val();
+		bus.trigger("newVehicle", registrationNumber);
+
+		// It's the responsibility of this view to clear its text box
+		input.val("");
+	},
+
+  render: function(){
+    var template = _.template($('#newVehicleTemplate').html());
+    var html = template();
+    this.$el.html(html);
+
+    return this;
+  }
+});
+
+var bus = _.extend({}, Backbone.Events);
+
 var vehicles = new Vehicles([
-  new Vehicle({ id: 1, registrationNumber: 'XLI887', color: 'Blue', brand: 'BMW' }),
-  new Vehicle({ id: 2, registrationNumber: 'ZNP123', color: 'Blue', brand: 'Audi' }),
-  new Vehicle({ id: 3, registrationNumber: 'XUV456', color: 'Gray', brand: 'BMW' })
+  new Vehicle({ registrationNumber: 'XLI887', color: 'Blue' }),
+  new Vehicle({ registrationNumber: 'ZNP123', color: 'Blue' }),
+  new Vehicle({ registrationNumber: 'XUV456', color: 'Gray' })
 ]);
 
-var vehiclesView = new VehiclesView({ collection: vehicles });
-$('#venues-container').html(vehiclesView.render().$el);
+$("#container")
+	.append(new NewVehicleView().render().$el)
+	.append(new VehiclesView({ collection: vehicles }).render().$el);
 
 
 

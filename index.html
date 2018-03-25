@@ -9,9 +9,7 @@
 </head>
 <body>
 
-  <div id="container">
-    <div id="venues-container"></div>
-  </div>
+  <div id="container"></div>
   
   <script src="./js/lib/jquery-3.3.1.min.js"></script>
   <script src="./js/lib/underscore-min.js"></script>
@@ -21,8 +19,12 @@
   <!-- <script src="./js/modelsProject.js"></script> -->
   <!-- <script src="./js/collectionsProject.js"></script> -->
   <!-- <script src="./js/viewsProject.js"></script> -->
+  <script id="newVehicleTemplate" type="text/template">
+      <input class="registration-number" type="text"></input> 
+      <button class="add">Add</button>
+  </script>
   <script id="vehicleTemplate" type="text/template">
-    <span> <%= registrationNumber %>, <%= brand %> </span>
+    <span> <%= registrationNumber %> </span>
     <button class="delete">Delete</button>
   </script>
   <!-- <script src="./js/viewProjectTemplate.js"></script> -->
