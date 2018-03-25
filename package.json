@@ -1,0 +1,25 @@
+{
+  "name": "backbone_boilerplate",
+  "version": "1.0.0",
+  "description": "A Backbonejs Boilerplate code.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.16.3",
+    "live-server": "^1.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarunbhartiya7/backbonejs_POC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarunbhartiya7/backbonejs_POC/issues"
+  },
+  "homepage": "https://github.com/tarunbhartiya7/backbonejs_POC#readme"
+}
